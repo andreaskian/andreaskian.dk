@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>👨‍💻 Front-end Developer/Designer | Andreas Kian</title>
+    <meta name="description" content="I'm Andreas Kian – front-end developer with great experience and know-how creating user-friendly and accessible things for the web." />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.6.3/svg.js"></script>
+    <style>
+
+        body {
+            background-color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 2;
+            display: block;
+            margin: 0;
+            padding: 0;
+
+        }
+        
+        /* iOS ignores overflow hidden @ body */
+        #splash {
+            display: block;
+            overflow: hidden;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #fill {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            -webkit-animation: fill 500ms forwards;
+            animation: fill 500ms forwards;
+        }
+
+        @-webkit-keyframes fill {
+            from {
+                -webkit-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+            }
+            to {
+                -webkit-transform: translate(-50%, -50%) scale(30);
+                transform: translate(-50%, -50%) scale(30);
+            }
+        }
+
+        @keyframes fill {
+            from {
+                -webkit-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+            }
+            to {
+                -webkit-transform: translate(-50%, -50%) scale(30);
+                transform: translate(-50%, -50%) scale(30);
+            }
+        }
+
+        #circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            -webkit-animation: circle 300ms 600ms forwards;
+            animation: circle 300ms 600ms forwards;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        @-webkit-keyframes circle {
+            from {
+                opacity: 1;
+                -webkit-transform: translate(-50%, -50%) scale(0, 0);
+                transform: translate(-50%, -50%) scale(0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate(-50%, -50%) scale(1, 1);
+                transform: translate(-50%, -50%) scale(1, 1);
+            }
+        }
+
+        @keyframes circle {
+            from {
+                opacity: 1;
+                -webkit-transform: translate(-50%, -50%) scale(0, 0);
+                transform: translate(-50%, -50%) scale(0, 0);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate(-50%, -50%) scale(1, 1);
+                transform: translate(-50%, -50%) scale(1, 1);
+            }
+        }
+
+        #logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            transition: text-indent 250ms ease-in;
+        }
+
+        a:hover {
+            text-indent: 2rem;
+        }
+
+        .elsewhere {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, 200px);
+            transform: translate(-50%, 200px);
+            opacity: 0;
+
+            -webkit-animation: slideup 400ms 250ms ease forwards;
+            animation: slideup 400ms 250ms ease forwards;
+        }
+
+        @-webkit-keyframes slideup {
+            from {
+                opacity: 0;
+                -webkit-transform: translate(-50%, 300px);
+                transform: translate(-50%, 300px);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate(-50%, 200px);
+                transform: translate(-50%, 200px);
+            }
+        }
+
+        @keyframes slideup {
+            from {
+                opacity: 0;
+                -webkit-transform: translate(-50%, 300px);
+                transform: translate(-50%, 300px);
+            }
+            to {
+                opacity: 1;
+                -webkit-transform: translate(-50%, 200px);
+                transform: translate(-50%, 200px);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="splash">
+        <div id="logo"></div>
+        <div id="circle"></div>
+        <div id="fill"></div>
+    </div>
+
+    <div class="elsewhere">
+        <a href="mailto:andreas@andreaskian.dk">andreas@andreaskian.dk</a>
+        <a href="tel:+4529493000">(+45) 29 49 30 00</a>
+        <!-- <a href="https://github.com/andreaskian/">Github</a>
+        <a href="https://twitter.com/andreaskian">Twitter</a>
+        <a href="https://www.linkedin.com/in/andreaskian/">LinkedIn</a> -->
+    </div>
+
+    <script>
+
+        const primaryColor = '#1E283C';
+        const animateObj = { duration: '0.5s', delay: '1s' }
+
+        setTimeout(() => {
+            document.body.style.backgroundColor = primaryColor;
+            
+            const fill = document.getElementById('fill');
+            fill.parentNode.removeChild(fill);
+        }, 600);
+
+        const fill = SVG('fill')
+            .size(100, 100)
+            .circle(100, 100)
+            .attr({ fill: primaryColor });
+
+        const circle = SVG('circle')
+            .size(300, 300)
+            .circle(300, 300)
+            .attr({ fill: '#fff' });
+
+        const logo = SVG('logo').size(172, 154);
+
+        const rect1 = logo
+            .rect(0, 30)
+            .translate(10, 130)
+            .rotate(-60)
+            .radius(15)
+            .attr({ fill: primaryColor })
+            .animate(animateObj)
+            .attr('width', 160);
+
+        const rect2 = logo
+            .rect(0, 30)
+            .scale(-1, -1)
+            .translate(76, 21)
+            .rotate(60)
+            .radius(15)
+            .attr({ fill: primaryColor })
+            .animate(animateObj)
+            .attr('width', 160);
+
+        const rect3 = logo
+            .rect(0, 30)
+            .scale(1, -1)
+            .translate(165, 154)
+            .rotate(-15)
+            .radius(15)
+            .attr({ fill: primaryColor })
+            .animate(animateObj)
+            .attr('width', 110);
+
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2522734-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+</body>
+
+</html>
